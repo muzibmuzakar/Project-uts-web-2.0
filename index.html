@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project UTS</title>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="lib/css/stylesheet.css">
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/bootstrap.js"></script>
+    <script src="lib/vue.js"></script>
+    <script src="lib/vuex.js"></script>
+    <script src="lib/vue-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <!-- nav -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container">
+            <!-- Brand/logo -->
+                <a class="navbar-brand" href="#">
+                    <img src="img/egfrty.png" alt="Logo" style="width:150px;">
+                </a>                
+            <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/">Home</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="brand">Brand</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="collections">Collection</router-link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- end nav -->
+        
+        <!-- view -->
+        <div>
+            <transition name="fade" mode="out-in">
+                <router-view></router-view>
+            </transition>
+        </div>
+        <!-- end view -->
+        
+        <!-- Footer -->
+        <footer class="section-footer border-top padding-y">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#">Eightforty.com | by: Muzib Muzakar</a>
+            </div>
+            <!-- Copyright -->
+        
+        </footer>
+        <!-- Footer -->
+
+    </div>
+
+    <!-- script -->
+    <script type="module">
+        import { BrandComponent } from './BrandComponent.js';
+        import { CollectionsComponent } from './CollectionsComponent.js';
+        import { CollectionComponent } from './CollectionComponent.js';
+        import { CheckoutComponent } from './CheckoutComponent.js';
+
+        // definisi konfigurasi component
+        const Home = { template: '<section class="jumbotron text-center"><div class="container"><h1>Home</h1><p class="lead text-muted">Irure laboris aliqua esse velit sit aliquip irure et magna fugiat Lorem aliqua. Non velit exercitation sit sunt elit. Enim non adipisicing ullamco Lorem do qui velit sunt incididunt deserunt. Ex eu aliquip sint aute ullamco reprehenderit commodo aliqua id.</p><p><router-link class="btn btn-primary" to="/collections">View Collection</router-link></p></div></section>'}        
+
+        // mapping route path dengan componentnya
+        const routes = [
+            { path: '/', component: Home, alias: '/home' },
+            { path: '/brand', component: BrandComponent },
+            { path: '/collections', component: CollectionsComponent },
+            { path: '/collection/:id', component: CollectionComponent, props: true },
+            { path: '/checkout/:id', component: CheckoutComponent, props:true },
+            { path: '*', redirect:'/'}
+        ]
+
+        // register routes pada objek router
+        const router = new VueRouter ({
+            routes
+        })
+
+        // register objek router pada vue object
+        var vm = new Vue({
+            el: '#app',
+            router,
+        })
+    </script>
+</body>
+</html>
