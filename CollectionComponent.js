@@ -81,7 +81,7 @@ export const CollectionComponent = {
 				  <p>{{ collection.description }}</p>
 				  <router-link :to="'/checkout/' + collection.id">
 					<div class="card_area d-flex align-items-center">
-						<a class="primary-btn" href="#">Add to Cart</a>
+						<a class="primary-btn" href="#">Beli</a>
 					</div>
 				  </router-link>
                 </div>
